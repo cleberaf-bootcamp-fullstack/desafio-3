@@ -46,12 +46,13 @@ export default class ShowSalary extends Component {
   toPercent(number) {
     const formatter = new Intl.NumberFormat('pt-BR', {
       style: 'percent',
-      maximumFractionDigits: 2,
+      // maximumFractionDigits: 2,
     });
     return formatter.format(number);
   }
   render() {
-    const { calculations } = this.state;
+    // const { percentage } = this.props;
+    const { currentInputSalary, calculations } = this.state;
     const {
       baseINSS,
       discountINSS,
@@ -60,6 +61,11 @@ export default class ShowSalary extends Component {
       netSalary,
     } = calculations;
 
+    const percentageINSS = +((discountINSS / currentInputSalary) * 100).toFixed(
+      2
+    );
+    const formValue = `R$ ${discountINSS} (${percentageINSS}%)`;
+    console.log(percentageINSS);
     return (
       <div>
         <h1>Salário React</h1>
@@ -86,13 +92,7 @@ export default class ShowSalary extends Component {
         </label>
 
         <label htmlFor="">Desconto INSS:</label>
-        <input
-          type="text"
-          name=""
-          id=""
-          readOnly
-          value={this.toPercent(discountINSS)}
-        />
+        <input type="text" name="" id="" readOnly value={formValue} />
         <label htmlFor="">Base IRPF:</label>
         <input
           type="text"
