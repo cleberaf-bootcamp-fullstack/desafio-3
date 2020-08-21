@@ -4,13 +4,13 @@ function calculaJuros(capital, taxaJuros, tempoAplicacao) {
   tempoAplicacao = 12;
   var taxaJuros = taxaJuros / 100;
   var montante = capital * Math.pow(1 + taxaJuros, tempoAplicacao);
-  var tot = montante.toString();
-  var men = tot / tempoAplicacao;
+  // var tot = montante.toString();
+  var men = montante / tempoAplicacao;
 
   return {
-    taxaJuros,
-    tot,
+    montante,
     men,
   };
 }
 console.log(men);
+export { calculaJuros };
