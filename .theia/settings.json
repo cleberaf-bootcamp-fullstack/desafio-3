@@ -1,7 +1,7 @@
 {
   "prettier.singleQuote": true,
   "editor.formatOnSave": true,
-  "editor.autoSave": "on",
+  "editor.autoSave": "off",
   "emmet.syntaxProfiles": {
     "javascript": "jsx"
   },
