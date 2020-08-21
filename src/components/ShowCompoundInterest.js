@@ -5,7 +5,7 @@ const CALC_JUROS_COMPOSTO={montante:0, men:0}
 
 
 export default function ShowCompoundInterest() {
-  const [currentcapital, setCurrentCapital] = useState(0);
+  const [currentCapital, setCurrentCapital] = useState(0);
   const [currentJurosMes, setCurrentJurosMes] = useState(0);
   const [currentPeriodoMes, setCurrentPeriodoMes] = useState(0);
   const [currentCalcJurosComposto, setCurrentCalcJurosCompostos] = useState(CALC_JUROS_COMPOSTO);
@@ -23,7 +23,7 @@ export default function ShowCompoundInterest() {
     setCurrentPeriodoMes(Number(event.target.value));
   };
 
-calculajuros();
+setCurrentCalcJurosCompostos(calculajuros(currentCapital,currentJurosMes,currentPeriodoMes));
 
 
   return (
@@ -63,8 +63,9 @@ calculajuros();
           defaultValue="0"
           onChange={handleInputPeriodoMes}
         />
-        />
+        
       </label>
+      
     </div>
   );
 }
