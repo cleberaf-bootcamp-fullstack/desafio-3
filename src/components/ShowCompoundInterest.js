@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import {calculajuros} from '../compoundInterest';
+import React, { useState, useEffect } from 'react';
+import { calculaJuros,calcJuros } from '../compoundInterest';
 
-const CALC_JUROS_COMPOSTO={montante:0, men:0}
-
+const CALC_JUROS_COMPOSTO = [
+  { valor: 0, valorjuros: 0, valorjurosporcentagem: 0 },
+];
 
 export default function ShowCompoundInterest() {
   const [currentCapital, setCurrentCapital] = useState(0);
   const [currentJurosMes, setCurrentJurosMes] = useState(0);
   const [currentPeriodoMes, setCurrentPeriodoMes] = useState(0);
-  const [currentCalcJurosComposto, setCurrentCalcJurosCompostos] = useState(CALC_JUROS_COMPOSTO);
-
-
-
+  const [currentCalcJurosComposto, setCurrentCalcJurosCompostos] = useState(
+    CALC_JUROS_COMPOSTO
+  );
+  const { valor, valorjuros, valorjurosporcentagem } = currentCalcJurosComposto;
 
   const handleInputCapital = (event) => {
     setCurrentCapital(Number(event.target.value));
@@ -19,12 +20,15 @@ export default function ShowCompoundInterest() {
   const handleInputJurosMes = (event) => {
     setCurrentJurosMes(Number(event.target.value));
   };
-  const handleInputCapital = (event) => {
+  const handleInputPeriodoMes = (event) => {
     setCurrentPeriodoMes(Number(event.target.value));
   };
-
-setCurrentCalcJurosCompostos(calculajuros(currentCapital,currentJurosMes,currentPeriodoMes));
-
+  console.log(currentCapital);
+  useEffect(() => {
+    setCurrentCalcJurosCompostos(
+      calcJuros(currentCapital, currentJurosMes, currentPeriodoMes)
+    );
+  }, [currentCapital, currentJurosMes, currentPeriodoMes]);
 
   return (
     <div>
@@ -63,9 +67,12 @@ setCurrentCalcJurosCompostos(calculajuros(currentCapital,currentJurosMes,current
           defaultValue="0"
           onChange={handleInputPeriodoMes}
         />
-        
       </label>
-      
+      <div>
+        <p>{valor}</p>
+        <p>{valorjuros}</p>
+        <p>{valorjurosporcentagem}</p>
+      </div>
     </div>
   );
 }
