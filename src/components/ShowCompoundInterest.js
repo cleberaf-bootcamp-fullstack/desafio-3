@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { calculaJuros,calcJuros } from '../compoundInterest';
+import { calcJuros } from '../compoundInterest';
 
 const CALC_JUROS_COMPOSTO = [
   { valor: 0, valorjuros: 0, valorjurosporcentagem: 0 },
@@ -9,7 +9,7 @@ export default function ShowCompoundInterest() {
   const [currentCapital, setCurrentCapital] = useState(0);
   const [currentJurosMes, setCurrentJurosMes] = useState(0);
   const [currentPeriodoMes, setCurrentPeriodoMes] = useState(0);
-  const [currentCalcJurosComposto, setCurrentCalcJurosCompostos] = useState(
+  const [currentCalcJurosComposto, setCurrentCalcJurosComposto] = useState(
     CALC_JUROS_COMPOSTO
   );
   const { valor, valorjuros, valorjurosporcentagem } = currentCalcJurosComposto;
@@ -25,11 +25,11 @@ export default function ShowCompoundInterest() {
   };
   console.log(currentCapital);
   useEffect(() => {
-    setCurrentCalcJurosCompostos(
+    setCurrentCalcJurosComposto(
       calcJuros(currentCapital, currentJurosMes, currentPeriodoMes)
     );
   }, [currentCapital, currentJurosMes, currentPeriodoMes]);
-
+  console.log(currentCalcJurosComposto);
   return (
     <div>
       <label htmlFor="">
