@@ -12,7 +12,7 @@ export default function ShowCompoundInterest() {
   const [currentCalcJurosComposto, setCurrentCalcJurosComposto] = useState(
     CALC_JUROS_COMPOSTO
   );
-  // const { valor, valorjuros, valorjurosporcentagem } = currentCalcJurosComposto;
+  // const { id } = currentCalcJurosComposto;
 
   const handleInputCapital = (event) => {
     setCurrentCapital(Number(event.target.value));
@@ -30,18 +30,20 @@ export default function ShowCompoundInterest() {
     );
   }, [currentCapital, currentJurosMes, currentPeriodoMes]);
   console.log(currentCalcJurosComposto);
-  const listaParcelas = currentCalcJurosComposto.map((calc) => {
-    const { valor, valorjuros, valorjurosporcentagem } = calc;
+  const listaParcelas = currentCalcJurosComposto.map((calc, i) => {
+    const { id, valor, valorjuros, valorjurosporcentagem } = calc;
     return (
-      <div>
-        <p> {valor}</p>
-        <p> {valorjuros}</p>
-        <p> {valorjurosporcentagem}</p>
+      <div key={i}>
+        <li>{id}</li>
+        <li>{valor}</li>
+        <li> {valorjuros}</li>
+        <li>{valorjurosporcentagem}</li>
       </div>
     );
   });
   return (
-    <div>
+    <div className="container">
+      <h1>React - Juros Composto</h1>
       <label htmlFor="">
         Capital inicial:
         <input
@@ -78,7 +80,7 @@ export default function ShowCompoundInterest() {
           onChange={handleInputPeriodoMes}
         />
       </label>
-      <div>{listaParcelas}</div>
+      <ul>{listaParcelas}</ul>
     </div>
   );
 }

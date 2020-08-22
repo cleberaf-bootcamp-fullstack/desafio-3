@@ -18,15 +18,16 @@ function calcJuros(capital, taxaJuros, tempoAplicacao) {
   let capitalAcrescido = capital;
 
   for (let index = 0; index < tempoAplicacao; index++) {
+    let id = 0;
+    id = index + 1;
     let jurosParcela = capitalAcrescido * taxaJuros;
-
-    // valorJurosParcela =
     capitalAcrescido = capitalAcrescido + jurosParcela;
     let valorParcela = capitalAcrescido;
     let valorJurosParcela = capitalAcrescido - capital;
     let valorJurosParcelaPorcentagem = (valorJurosParcela / capital) * 100;
 
     arrayParcelas.push({
+      id: id,
       valor: valorParcela,
       valorjuros: valorJurosParcela,
       valorjurosporcentagem: valorJurosParcelaPorcentagem,
