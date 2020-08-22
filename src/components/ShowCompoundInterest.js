@@ -12,7 +12,7 @@ export default function ShowCompoundInterest() {
   const [currentCalcJurosComposto, setCurrentCalcJurosComposto] = useState(
     CALC_JUROS_COMPOSTO
   );
-  const { valor, valorjuros, valorjurosporcentagem } = currentCalcJurosComposto;
+  // const { valor, valorjuros, valorjurosporcentagem } = currentCalcJurosComposto;
 
   const handleInputCapital = (event) => {
     setCurrentCapital(Number(event.target.value));
@@ -30,6 +30,16 @@ export default function ShowCompoundInterest() {
     );
   }, [currentCapital, currentJurosMes, currentPeriodoMes]);
   console.log(currentCalcJurosComposto);
+  const listaParcelas = currentCalcJurosComposto.map((calc) => {
+    const { valor, valorjuros, valorjurosporcentagem } = calc;
+    return (
+      <div>
+        <p> {valor}</p>
+        <p> {valorjuros}</p>
+        <p> {valorjurosporcentagem}</p>
+      </div>
+    );
+  });
   return (
     <div>
       <label htmlFor="">
@@ -68,11 +78,7 @@ export default function ShowCompoundInterest() {
           onChange={handleInputPeriodoMes}
         />
       </label>
-      <div>
-        <p>{valor}</p>
-        <p>{valorjuros}</p>
-        <p>{valorjurosporcentagem}</p>
-      </div>
+      <div>{listaParcelas}</div>
     </div>
   );
 }
