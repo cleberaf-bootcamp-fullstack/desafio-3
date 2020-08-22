@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { calcJuros } from '../compoundInterest';
 
 const CALC_JUROS_COMPOSTO = [
-  { valor: 0, valorjuros: 0, valorjurosporcentagem: 0 },
+  { id:0, valor: 0, valorjuros: 0, valorjurosporcentagem: 0 },
 ];
 
 export default function ShowCompoundInterest() {
